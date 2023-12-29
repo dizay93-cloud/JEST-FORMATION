@@ -37,7 +37,11 @@ function App() {
         setDogImages(json.message);
       });
   };
-
+  const resetBreed = () => {
+    setDogImages([]);
+    setSelectedBreed("");
+    setIsLoading(false);
+  };
   return (
     <div className="d-flex justify-content-center flex-column text-center">
       <header>
@@ -67,6 +71,14 @@ function App() {
             onClick={searchByBreed}
           >
             Search
+          </button>
+          <button
+            type="button"
+            className="btn btn-info mx-2"
+            disabled={!selectedBreed}
+            onClick={resetBreed}
+          >
+            Reset
           </button>
         </div>
         {dogImages.length > 0 && !isLoading && (
